@@ -7,10 +7,10 @@
       <section class="player">
         <h2 class="song-title">{{current.title}} - <span>{{current.artist}}</span> </h2>
         <div class="controls">
-          <button class="prev">Prev</button>
+          <button class="prev" @click="prev">Prev</button>
           <button class="play" v-if="!isPlaying" @click="play">Play</button>
           <button class="pause" @click="pause" v-else>Pause</button>
-          <button class="next">Next</button>
+          <button class="next" @click="next">Next</button>
         </div>
       </section>
       <section class="playlist">
@@ -59,6 +59,22 @@ export default {
     pause () {
       this.player.pause();
       this.isPlaying = false;
+    },
+    next () {
+      this.index++;
+      if (this.index > this.songs.length - 1) {
+        this.index = 0;
+      }
+      this.current = this.songs[this.index];
+      this.play(this.current);
+    },
+    prev () {
+      this.index--;
+      if (this.index < 0) {
+        this.index = this.songs.length - 1;
+      }
+      this.current = this.songs[this.index];
+      this.play(this.current);
     }
   },
   created () {
@@ -86,5 +102,57 @@ header{
   padding: 15px;
   background-color: #212121;
   color: #FFF;
+}
+main {
+  width: 100%;
+  max-width: 768px;
+  margin: 0 auto;
+  padding: 25px;
+}
+.song-title{
+  color: #53565A;
+  font-size: 32px;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+}
+.song-title span {
+  font-weight: 400;
+  font-style: italic;
+
+}
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 15px;
+}
+button {
+  appearance: none;
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+button:hover {
+  opacity: 0.8;
+}
+.play {
+  font-size: 20px;
+  font-weight: 700;
+  padding: 15px 25px;
+  margin: 0px 15px;
+  border-radius: 8px;
+  color: #FFF;
+  background-color: #CC2E5D;
+}
+.next, .prev {
+  font-size: 16px;
+  font-weight: 700;
+  padding: 10px 20px;
+  margin: 0px 15px;
+  border-radius: 6px;
+  color: #FFF;
+  background-color: #FF5858;
 }
 </style>
