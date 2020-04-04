@@ -9,9 +9,15 @@
         <div class="controls">
           <button class="prev">Prev</button>
           <button class="play" v-if="!isPlaying" @click="play">Play</button>
-          <button class="pause" v-else @click="pause">Pause</button>
+          <button class="pause" @click="pause" v-else>Pause</button>
           <button class="next">Next</button>
         </div>
+      </section>
+      <section class="playlist">
+        <h3>Your Playlist</h3>
+        <button v-for="song in songs" :key="song" @click="play(song)" :class="(song.src == current.src) ? 'song playing' : 'song'">
+          {{ song.title}} - {{song.artist}}
+        </button>
       </section>
     </main>
   </div>
@@ -21,10 +27,10 @@
 
 export default {
   name: 'App',
-  isPlaying: false,
   data () {
     return{
       current: { },
+      isPlaying: false,
       index: 0,
       songs: [
         {
@@ -42,18 +48,17 @@ export default {
     }
   },
   methods: {
-    play(song) {
+    play (song) {
       if (typeof song.src != "undefined") {
         this.current = song;
         this.player.src = this.current.src;
       }
-
       this.player.play();
-      this.isPlaying = false;
+      this.isPlaying = true;
     },
     pause () {
       this.player.pause();
-      this.isPlaying = true;
+      this.isPlaying = false;
     }
   },
   created () {
