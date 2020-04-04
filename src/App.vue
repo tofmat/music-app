@@ -94,6 +94,7 @@ export default {
 }
 body{
   font-family: san-serif;
+  background-color: black;
 }
 header{
   display: flex;
@@ -110,7 +111,7 @@ main {
   padding: 25px;
 }
 .song-title{
-  color: #53565A;
+  color: white;
   font-size: 32px;
   font-weight: 700;
   text-transform: uppercase;
@@ -168,7 +169,7 @@ button:hover {
   padding: 0px 30px;
 }
 .playlist h3 {
-  color: #212121;
+  color: white;
   font-size: 28px;
   font-weight: 400;
   margin-bottom: 30px;
@@ -181,13 +182,16 @@ button:hover {
    font-size: 20px;
    font-weight: 700;
    cursor: pointer;
+   color: white;
+   background-color: #CC2E5D;
+   margin-top: 10px;
 }
 .playlist .song:hover {
-  color: #FF5858
+  color: black;
 }
 
 .playlist .song.playing {
   color: #FFF;
-  background-image: linear-gradient(to right, #CC2E5D, #FF5858);
+  background-image: linear-gradient(to right, rgb(16, 9, 114), rgb(194, 88, 255));
 }
 </style>
